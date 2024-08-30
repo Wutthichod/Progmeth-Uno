@@ -1,0 +1,166 @@
+@startuml
+class logic.card.WildCard {
+- CardEffect effect
++ <<Create>> WildCard()
++ String toString()
++ void useEffect()
+}
+
+
+class logic.game.Player {
+- String name
+- List<BaseCard> hand
++ <<Create>> Player(String)
++ String getName()
++ void drawCard(BaseCard)
++ void playCard(BaseCard)
++ List<BaseCard> getHand()
+}
+
+
+class application.GameIO {
+- {static} Scanner scanner
+- {static} CardColor[] colors
++ {static} void printHand(Player)
++ {static} void printCurrentCard(BaseCard)
++ {static} void printInvalidCardMessage()
++ {static} void printTurnStartInfo(Player,BaseCard)
++ {static} void printDrawResult(Player,BaseCard)
++ {static} void printTopCard(BaseCard)
++ {static} CardColor chooseColor(BaseWildCard)
+}
+
+
+abstract class logic.card.BaseCard {
+- CardColor color
++ <<Create>> BaseCard()
++ <<Create>> BaseCard(CardColor)
++ {abstract}void play()
++ {abstract}boolean isPlayable(BaseCard)
++ {abstract}String toString()
++ CardColor getColor()
++ void setColor(CardColor)
+}
+
+
+abstract class logic.card.BaseWildCard {
++ <<Create>> BaseWildCard()
++ void play()
+}
+
+class logic.card.NumberCard {
+- int number
++ <<Create>> NumberCard(CardColor,int)
++ void play()
++ boolean isPlayable(BaseCard)
++ String toString()
++ int getNumber()
+}
+
+
+class Main {
++ {static} void main(String[])
+}
+
+enum logic.game.CardColor {
++  RED
++  BLUE
++  GREEN
++  YELLOW
++  NO_COLOR
+}
+
+abstract class logic.card.BaseEffectCard {
+- CardEffect effect
++ <<Create>> BaseEffectCard()
++ <<Create>> BaseEffectCard(CardColor)
++ {abstract}void useEffect()
++ void play()
++ boolean isPlayable(BaseCard)
++ CardEffect getEffect()
+}
+
+
+class logic.card.SkipCard {
+- CardEffect effect
++ <<Create>> SkipCard(CardColor)
++ String toString()
++ void useEffect()
+}
+
+
+class application.GameLoop {
+- Deck deck
+- BaseCard topDiscard
+- Player[] players
+- int currentPlayerIndex
+- {static} GameLoop gameInstance
+- int direction
++ <<Create>> GameLoop()
++ void start()
+- void dealCards()
+- boolean isGameOver()
++ Player getNextPlayer()
++ {static} GameLoop getGameInstance()
++ int getCurrentPlayerIndex()
++ void setCurrentPlayerIndex(int)
++ void setDirection(int)
++ int getDirection()
++ Deck getDeck()
++ Player[] getPlayers()
+}
+
+
+class logic.card.WildCardDrawFourCard {
+- CardEffect effect
++ <<Create>> WildCardDrawFourCard()
++ String toString()
++ void useEffect()
+}
+
+
+class logic.card.ReverseCard {
+- CardEffect effect
++ <<Create>> ReverseCard(CardColor)
++ String toString()
++ void useEffect()
+}
+
+
+class logic.game.Deck {
+- ArrayList<BaseCard> cards
++ <<Create>> Deck()
+- void initializeDeck()
++ void shuffle()
++ BaseCard drawCard()
++ BaseCard drawFirstCard()
+}
+
+
+class logic.card.DrawTwoCard {
+- CardEffect effect
++ <<Create>> DrawTwoCard(CardColor)
++ String toString()
++ void useEffect()
+}
+
+
+enum logic.game.CardEffect {
++  SKIP
++  REVERSE
++  DRAW_TWO
++  WILD
++  WILD_DRAW_FOUR
+}
+
+
+
+logic.card.BaseWildCard <|-- logic.card.WildCard
+logic.card.BaseEffectCard <|-- logic.card.BaseWildCard
+logic.card.BaseCard <|-- logic.card.NumberCard
+logic.card.BaseCard <|-- logic.card.BaseEffectCard
+logic.card.BaseEffectCard <|-- logic.card.SkipCard
+logic.card.BaseWildCard <|-- logic.card.WildCardDrawFourCard
+logic.card.BaseEffectCard <|-- logic.card.ReverseCard
+logic.card.BaseEffectCard <|-- logic.card.DrawTwoCard
+@enduml

@@ -19,10 +19,6 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void drawCard(BaseCard card) {
         hand.add(card);
     }
@@ -32,9 +28,12 @@ public class Player {
         card.play();
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<BaseCard> getHand() {
         return hand;
     }
-
 }
 

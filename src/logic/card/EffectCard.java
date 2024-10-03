@@ -24,10 +24,9 @@ public abstract class EffectCard extends BaseCard{
     @Override
     public boolean isPlayable(BaseCard currentCard) {
         if (currentCard instanceof EffectCard) {
-            return this.getEffect() == ((EffectCard) currentCard).getEffect();
+            return this.getEffect() == ((EffectCard) currentCard).getEffect() || currentCard instanceof WildCardDrawFourCard;
         }
-        return  this.getColor() == currentCard.getColor();
-
+        return this.getColor() == currentCard.getColor();
     }
 
     @Override

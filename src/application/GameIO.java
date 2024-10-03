@@ -50,7 +50,7 @@ public class GameIO {
         System.out.println("Top card is " + topCard.toString());
     }
 
-    public static CardColor chooseColor(BaseWildCard card) {
+    public static CardColor chooseColor() {
         System.out.println("========================================");
         System.out.println("Choose Next Color");
         for (int i = 0; i < colors.length; i++) {

@@ -1,15 +1,22 @@
 package logic.card;
 
+import application.GameIO;
 import application.GameLoop;
+import Enum.CardColor;
 import Enum.CardEffect;
 import logic.game.Deck;
 import logic.game.Player;
 
-public class WildCardDrawFourCard extends BaseWildCard {
-
+public class WildCardDrawFourCard extends EffectCard {
 
     public WildCardDrawFourCard() {
-        super(CardEffect.WILD_DRAW_FOUR);
+        super(CardColor.NO_COLOR, CardEffect.WILD_DRAW_FOUR);
+    }
+
+    @Override
+    public void play() {
+        super.play();
+        System.out.println("Color Changed to " + this.getColor());
     }
 
     @Override
@@ -19,7 +26,7 @@ public class WildCardDrawFourCard extends BaseWildCard {
 
     @Override
     public void useEffect() {
-        this.setColor(application.GameIO.chooseColor(this));
+        this.setColor(GameIO.chooseColor());
         Player nextPlayer = GameLoop.getGameInstance().getNextPlayer();
         Deck deck = GameLoop.getGameInstance().getDeck();
         for (int i = 0; i < 4; i++) {

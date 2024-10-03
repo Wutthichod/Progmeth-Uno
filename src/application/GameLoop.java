@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class GameLoop {
     private Deck deck;
-    private BaseCard topDiscard;
     private Player[] players;
+    private BaseCard topDiscard;
     private int currentPlayerIndex;
     private static GameLoop gameInstance;
     private int direction = 1;
@@ -83,7 +83,6 @@ public class GameLoop {
                     scanner.nextLine();
                 }
             }
-            // Move to the next player
             currentPlayerIndex = (currentPlayerIndex + players.length + direction) % players.length;
         }
         System.out.println(players[currentPlayerIndex].getName() + "Won !!");
@@ -116,6 +115,10 @@ public class GameLoop {
             gameInstance = new GameLoop();
         }
         return gameInstance;
+    }
+
+    public void reverse() {
+        GameLoop.getGameInstance().setDirection(-GameLoop.getGameInstance().getDirection());
     }
 
     public int getCurrentPlayerIndex() {

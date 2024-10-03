@@ -21,7 +21,7 @@ public class NumberCard extends BaseCard {
         if (currentCard instanceof NumberCard) {
             return this.getNumber() == ((NumberCard) currentCard).getNumber() || this.getColor() == currentCard.getColor();
         }
-        return this.getColor() == currentCard.getColor() || currentCard instanceof BaseWildCard;
+        return this.getColor() == currentCard.getColor() || currentCard instanceof WildCardDrawFourCard;
     }
 
     @Override

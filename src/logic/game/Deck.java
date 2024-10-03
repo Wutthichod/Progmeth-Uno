@@ -34,7 +34,6 @@ public class Deck {
             }
         }
         for (int i = 0; i < 4; i++) {
-            cards.add(new WildCard());
             cards.add(new WildCardDrawFourCard());
         }
     }

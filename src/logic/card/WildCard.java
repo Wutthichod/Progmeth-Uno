@@ -1,13 +1,11 @@
 package logic.card;
 
-import logic.game.CardEffect;
+import Enum.CardEffect;
 
 public class WildCard extends BaseWildCard{
 
-    private final CardEffect effect = CardEffect.WILD;
-
     public WildCard() {
-        super();
+        super(CardEffect.WILD);
     }
 
     @Override

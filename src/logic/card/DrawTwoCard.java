@@ -1,25 +1,17 @@
 package logic.card;
 
-import application.GameIO;
 import application.GameLoop;
-import logic.game.CardColor;
-import logic.game.CardEffect;
+import Enum.CardColor;
+import Enum.CardEffect;
 import logic.game.Deck;
 import logic.game.Player;
 
-public class DrawTwoCard extends BaseEffectCard {
-
-    private final CardEffect effect = CardEffect.DRAW_TWO;
+public class DrawTwoCard extends EffectCard {
 
     public DrawTwoCard(CardColor color) {
-        super(color);
+        super(color, CardEffect.DRAW_TWO);
     }
-
-    @Override
-    public String toString() {
-        return this.getColor() + " Draw Two";
-    }
-
+  
     @Override
     public void useEffect() {
         Player nextPlayer = GameLoop.getGameInstance().getNextPlayer();

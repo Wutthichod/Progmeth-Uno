@@ -1,14 +1,13 @@
 package application;
 
 import logic.card.*;
-import logic.game.CardColor;
+import Enum.CardColor;
 import logic.game.Player;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static logic.game.CardColor.*;
-import static logic.game.CardColor.YELLOW;
+import static Enum.CardColor.*;
+import static Enum.CardColor.YELLOW;
 
 public class GameIO {
     private static final Scanner scanner = new Scanner(System.in);
@@ -24,7 +23,7 @@ public class GameIO {
         System.out.println("========================================");
     }
 
-    public static void printCurrentCard(BaseCard card) {
+    public static void printCard(BaseCard card) {
         System.out.println("========================================");
         System.out.println("Played " + card);
     }

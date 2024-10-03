@@ -1,19 +1,19 @@
 package logic.card;
 
 import application.GameIO;
-import logic.game.CardColor;
+import Enum.CardColor;
 
 public class NumberCard extends BaseCard {
     private int number;
 
-    public NumberCard(CardColor color, int number) {
+    public NumberCard(CardColor color, int cardNumber) {
         super(color);
-        this.number = number;
+        this.number = cardNumber;
     }
 
     @Override
     public void play() {
-        GameIO.printCurrentCard(this);
+        GameIO.printCard(this);
     }
 
     @Override

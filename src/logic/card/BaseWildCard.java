@@ -1,11 +1,11 @@
 package logic.card;
+import Enum.CardEffect;
+import Enum.CardColor;
 
-import application.GameIO;
+public abstract class BaseWildCard extends EffectCard {
 
-public abstract class BaseWildCard extends BaseEffectCard {
-
-    public BaseWildCard() {
-        super();
+    public BaseWildCard(CardEffect cardEffect) {
+        super(CardColor.NO_COLOR, cardEffect);
     }
 
     @Override

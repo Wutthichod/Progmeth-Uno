@@ -1,16 +1,15 @@
 package logic.card;
 
 import application.GameLoop;
-import logic.game.CardEffect;
+import Enum.CardEffect;
 import logic.game.Deck;
 import logic.game.Player;
 
 public class WildCardDrawFourCard extends BaseWildCard {
 
-    private final CardEffect effect = CardEffect.WILD_DRAW_FOUR;
 
     public WildCardDrawFourCard() {
-        super();
+        super(CardEffect.WILD_DRAW_FOUR);
     }
 
     @Override

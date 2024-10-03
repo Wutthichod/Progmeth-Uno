@@ -1,6 +1,6 @@
 package logic.card;
 
-import logic.game.CardColor;
+import Enum.CardColor;
 
 public abstract class BaseCard {
     private CardColor color;

@@ -1,4 +1,4 @@
-package logic.game;
+package Enum;
 
 public enum CardEffect {
     SKIP,

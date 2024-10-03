@@ -1,20 +1,13 @@
 package logic.card;
 
 import application.GameLoop;
-import logic.game.CardColor;
-import logic.game.CardEffect;
+import Enum.CardColor;
+import Enum.CardEffect;
 
-public class ReverseCard extends BaseEffectCard {
-
-    private final CardEffect effect = CardEffect.REVERSE;
+public class ReverseCard extends EffectCard {
 
     public ReverseCard(CardColor color) {
-        super(color);
-    }
-
-    @Override
-    public String toString() {
-        return this.getColor() + " REVERSE";
+        super(color, CardEffect.REVERSE);
     }
 
     @Override

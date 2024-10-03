@@ -1,8 +1,9 @@
 package logic.game;
 
+import Enum.CardColor;
 import logic.card.*;
 
-import static logic.game.CardColor.*;
+import static Enum.CardColor.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,18 +22,18 @@ public class Deck {
 
         for (CardColor color : colors) {
             for (int i = 0; i <= 9; i++) {
-                cards.add(new NumberCard(color, i)); // Add 19 number cards for each colors
+                cards.add(new NumberCard(color, i));
                 if(i != 0){
-                    cards.add(new NumberCard(color, i)); //Add 2 numbers card if number is not 0
+                    cards.add(new NumberCard(color, i));
                 }
             }
-            for (int i = 0; i < 2; i++) { //Add 2 effects cards for each color
+            for (int i = 0; i < 2; i++) {
                 cards.add(new SkipCard(color));
                 cards.add(new ReverseCard(color));
                 cards.add(new DrawTwoCard(color));
             }
         }
-        for (int i = 0; i < 4; i++) { //Add 4 wild card and 4 wild card plus 4
+        for (int i = 0; i < 4; i++) {
             cards.add(new WildCard());
             cards.add(new WildCardDrawFourCard());
         }
@@ -47,7 +48,7 @@ public class Deck {
             initializeDeck();
             shuffle();
         }
-        return cards.removeFirst(); // Draw the top card
+        return cards.removeFirst();
     }
 
     public BaseCard drawFirstCard(){
@@ -56,6 +57,4 @@ public class Deck {
         }
         return cards.removeFirst();
     }
-
-    // Other methods as needed
 }

@@ -1,25 +1,19 @@
 package logic.card;
 
 import application.GameLoop;
-import logic.game.CardColor;
-import logic.game.CardEffect;
+import Enum.CardColor;
+import Enum.CardEffect;
 
-public class SkipCard extends BaseEffectCard {
-
-    private final CardEffect effect = CardEffect.SKIP;
+public class SkipCard extends EffectCard {
 
     public SkipCard(CardColor color) {
-        super(color);
-    }
-
-    @Override
-    public String toString() {
-        return this.getColor() + " SKIP";
+        super(color, CardEffect.SKIP);
     }
 
     @Override
     public void useEffect() {
         int skippedTurn = GameLoop.getGameInstance().getDirection();
-        GameLoop.getGameInstance().setCurrentPlayerIndex(GameLoop.getGameInstance().getCurrentPlayerIndex() + skippedTurn);
+        int currentPlayer = GameLoop.getGameInstance().getCurrentPlayerIndex();
+        GameLoop.getGameInstance().setCurrentPlayerIndex(currentPlayer + skippedTurn);
     }
 }

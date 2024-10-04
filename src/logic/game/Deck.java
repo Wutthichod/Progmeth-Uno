@@ -47,13 +47,17 @@ public class Deck {
             initializeDeck();
             shuffle();
         }
-        return cards.removeFirst();
+        BaseCard rt = cards.get(0);
+        cards.remove(0);
+        return rt;
     }
 
     public BaseCard drawFirstCard(){
-        while(!(cards.getFirst() instanceof NumberCard)){
+        while(!(cards.get(0) instanceof NumberCard)){
             shuffle();
         }
-        return cards.removeFirst();
+        BaseCard rt = cards.get(0);
+        cards.remove(0);
+        return rt;
     }
 }

@@ -51,76 +51,17 @@ public class DrawTwoCardTest {
     }
 
     @Test
-    void testCanPlay() {
+    void testisPlayable() {
         assertTrue(c2.isPlayable(c1));
         assertTrue(c3.isPlayable(c1));
         assertTrue(c4.isPlayable(c1));
         assertFalse(c5.isPlayable(c1));
     }
-
-//    @Test
-//    void testPerformEffect1() {
-//        // Next player hand non empty, has +2
-//        GameLogic gameInstance = GameLogic.getInstance(2);
-//        for (int i=0; i<4; i++)
-//            gameInstance.getDeck().add(new NumberCard(CardColor.randomColor(), CardSymbol.randomSymbol()));
-//        gameInstance.getPlayerHand(0).add(c2);
-//        gameInstance.getPlayerHand(1).add(c3);
-//        gameInstance.getPlayerHand(1).add(c5);
-//
-//        String message = c1.performEffect();
-//
-//        assertEquals(0, gameInstance.getDrawAmount());
-//        assertEquals("Player 1 played GREEN DRAW TWO. 1 cards remaining.\n" +
-//                "Player 0 drew 4 cards. 5 cards remaining.", message);
-//    }
-//
-//    @Test
-//    void testPerformEffect2() {
-//        // Next player hand empty, skip to the player after, has +2
-//        GameLogic gameInstance = GameLogic.getInstance(3);
-//        for (int i=0; i<4; i++)
-//            gameInstance.getDeck().add(new NumberCard(CardColor.randomColor(), CardSymbol.randomSymbol()));
-//        gameInstance.getPlayerHand(0).add(c2);
-//        gameInstance.getPlayerHand(2).add(c3);
-//        gameInstance.getPlayerHand(2).add(c5);
-//
-//        String message = c1.performEffect();
-//
-//        assertEquals(0, gameInstance.getDrawAmount());
-//        assertEquals("Player 2 played GREEN DRAW TWO. 1 cards remaining.\n" +
-//                "Player 0 drew 4 cards. 5 cards remaining.", message);
-//    }
-//
-//    @Test
-//    void testPerformEffect3() {
-//        // Next player hand has +4 before +2
-//        GameLogic gameInstance = GameLogic.getInstance(3);
-//        for (int i=0; i<6; i++)
-//            gameInstance.getDeck().add(new NumberCard(CardColor.randomColor(), CardSymbol.randomSymbol()));
-//        gameInstance.getPlayerHand(0).add(c2);
-//        gameInstance.getPlayerHand(2).add(c6);
-//        gameInstance.getPlayerHand(2).add(c3);
-//
-//        String message = c1.performEffect();
-//
-//        assertEquals(0, gameInstance.getDrawAmount());
-//        assertEquals("Player 2 played DRAW FOUR. 1 cards remaining.\n" +
-//                "Set color to GREEN\n" +
-//                "Player 0 drew 6 cards. 7 cards remaining.", message);
-//    }
-//
-//    @Test
-//    void testPerformEffect4() {
-//        // Next player hand doesn't have +2
-//        GameLogic gameInstance = GameLogic.getInstance(2);
-//        for (int i=0; i<2; i++)
-//            gameInstance.getDeck().add(new NumberCard(CardColor.randomColor(), CardSymbol.randomSymbol()));
-//        gameInstance.getPlayerHand(1).add(c2);
-//
-//        String message = c1.performEffect();
-//
-//        assertEquals(0, gameInstance.getDrawAmount());
-//        assertEquals("Player 1 drew 2 cards. 3 cards remaining.", message);
-//    }
+    @Test
+    void testPerformEffect() {
+        GameLoop object = GameLoop.getGameInstance(2);
+        assertEquals(0,object.getNextPlayer().getHand().size());
+        c1.useEffect();
+        assertEquals(2, object.getNextPlayer().getHand().size());
+    }
 }

@@ -18,7 +18,6 @@ public class SkipCardTest {
     SkipCard c3;
     SkipCard c4;
     NumberCard c5;
-
     ReverseCard c6;
 
     @BeforeEach
@@ -43,7 +42,6 @@ public class SkipCardTest {
         assertEquals(CardEffect.SKIP, c3.getEffect());
         assertEquals(CardColor.RED,c4.getColor());
         assertEquals(CardEffect.SKIP, c4.getEffect());
-        // TODO Implement here
     }
 
     @Test

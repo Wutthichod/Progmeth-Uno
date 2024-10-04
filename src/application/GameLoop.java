@@ -15,6 +15,7 @@ public class GameLoop {
     private static GameLoop gameInstance;
     private int direction = 1;
 
+
     public GameLoop() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -40,7 +41,22 @@ public class GameLoop {
             }
         }
     }
-
+    public GameLoop(int numberOfPlayers)
+    {
+        deck = new Deck();
+        topDiscard = deck.drawFirstCard();
+        players = new Player[numberOfPlayers];
+        for (int i = 0; i < numberOfPlayers; i++) {
+            players[i] = new Player("Player " + (i + 1));
+        }
+        currentPlayerIndex = 0;
+    }
+    public static GameLoop getGameInstance(int  numberOfPlayers) {
+        if (gameInstance == null) {
+            gameInstance = new GameLoop(numberOfPlayers);
+        }
+        return gameInstance;
+    }
     public void start() {
         Scanner scanner = new Scanner(System.in);
         while (!isGameOver()) {
@@ -116,9 +132,8 @@ public class GameLoop {
         }
         return gameInstance;
     }
-
-    public void reverse() {
-        GameLoop.getGameInstance().setDirection(-GameLoop.getGameInstance().getDirection());
+    public static void clearInstance() {
+        gameInstance = null;
     }
 
     public int getCurrentPlayerIndex() {
@@ -126,7 +141,7 @@ public class GameLoop {
     }
 
     public void setCurrentPlayerIndex(int currentPlayerIndex) {
-        this.currentPlayerIndex = currentPlayerIndex;
+        this.currentPlayerIndex = (currentPlayerIndex+players.length)%players.length;
     }
 
     public void setDirection(int direction) {
@@ -140,9 +155,16 @@ public class GameLoop {
     public Deck getDeck() {
         return deck;
     }
-
     public Player[] getPlayers() {
         return players;
+    }
+    public void setTopCard(BaseCard card)
+    {
+        topDiscard = card;
+    }
+    public BaseCard getTopCard()
+    {
+        return topDiscard;
     }
 }
 

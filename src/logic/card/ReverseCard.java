@@ -12,6 +12,7 @@ public class ReverseCard extends EffectCard {
 
     @Override
     public void useEffect() {
-        GameLoop.getGameInstance().setDirection(-GameLoop.getGameInstance().getDirection());
+        int newDirection = -1 * GameLoop.getGameInstance().getDirection();
+        GameLoop.getGameInstance().setDirection(newDirection);
     }
 }

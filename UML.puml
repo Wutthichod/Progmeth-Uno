@@ -1,9 +1,34 @@
 @startuml
-class logic.card.WildCard {
-- CardEffect effect
-+ <<Create>> WildCard()
-+ String toString()
+class test.DrawTwoCardTest {
+~ DrawTwoCard c1
+~ NumberCard c2
+~ DrawTwoCard c3
+~ DrawTwoCard c4
+~ NumberCard c5
+~ void setup()
+~ void tearDown()
+~ void testConstructor()
+~ void testToString()
+~ void testisPlayable()
+~ void testPerformEffect()
+}
+
+
+class logic.card.SkipCard {
++ <<Create>> SkipCard(CardColor)
 + void useEffect()
+}
+
+class application.GameIO {
+- {static} Scanner scanner
+- {static} CardColor[] colors
++ {static} void printHand(Player)
++ {static} void printCard(BaseCard)
++ {static} void printInvalidCardMessage()
++ {static} void printTurnStartInfo(Player,BaseCard)
++ {static} void printDrawResult(Player,BaseCard)
++ {static} void printTopCard(BaseCard)
++ {static} CardColor chooseColor()
 }
 
 
@@ -11,29 +36,86 @@ class logic.game.Player {
 - String name
 - List<BaseCard> hand
 + <<Create>> Player(String)
-+ String getName()
 + void drawCard(BaseCard)
 + void playCard(BaseCard)
++ String getName()
 + List<BaseCard> getHand()
 }
 
 
-class application.GameIO {
-- {static} Scanner scanner
-- {static} CardColor[] colors
-+ {static} void printHand(Player)
-+ {static} void printCurrentCard(BaseCard)
-+ {static} void printInvalidCardMessage()
-+ {static} void printTurnStartInfo(Player,BaseCard)
-+ {static} void printDrawResult(Player,BaseCard)
-+ {static} void printTopCard(BaseCard)
-+ {static} CardColor chooseColor(BaseWildCard)
+class test.ReverseCardTest {
+~ ReverseCard c1
+~ NumberCard c2
+~ ReverseCard c3
+~ ReverseCard c4
+~ NumberCard c5
+~ void setup()
+~ void tearDown()
+~ void testConstructor()
+~ void testToString()
+~ void testisPlayable()
+~ void testEffect()
+}
+
+
+enum Enum.CardColor {
++  RED
++  BLUE
++  GREEN
++  YELLOW
++  NO_COLOR
+}
+
+class logic.card.WildCardDrawFourCard {
++ <<Create>> WildCardDrawFourCard()
++ void play()
++ String toString()
++ void useEffect()
+}
+
+class test.WildDrawFourCardTest {
+~ WildCardDrawFourCard c1
+~ NumberCard c2
+~ DrawTwoCard c3
+~ WildCardDrawFourCard c4
+~ WildCardDrawFourCard c5
+~ NumberCard c6
+~ WildCardDrawFourCard c7
+- InputStream systemIn
+- ByteArrayInputStream testIn
+~ void setup()
+~ void tearDown()
+~ void testConstructor()
+~ void testToString()
+~ void testisPlayable()
+~ void testPerformEffect()
+}
+
+
+enum Enum.CardEffect {
++  SKIP
++  REVERSE
++  DRAW_TWO
++  WILD_DRAW_FOUR
+}
+
+class Main {
++ {static} void main(String[])
+}
+
+abstract class logic.card.EffectCard {
+- CardEffect effect
++ <<Create>> EffectCard(CardColor,CardEffect)
++ {abstract}void useEffect()
++ void play()
++ boolean isPlayable(BaseCard)
++ String toString()
++ CardEffect getEffect()
 }
 
 
 abstract class logic.card.BaseCard {
 - CardColor color
-+ <<Create>> BaseCard()
 + <<Create>> BaseCard(CardColor)
 + {abstract}void play()
 + {abstract}boolean isPlayable(BaseCard)
@@ -43,87 +125,46 @@ abstract class logic.card.BaseCard {
 }
 
 
-abstract class logic.card.BaseWildCard {
-+ <<Create>> BaseWildCard()
-+ void play()
-}
-
-class logic.card.NumberCard {
-- int number
-+ <<Create>> NumberCard(CardColor,int)
-+ void play()
-+ boolean isPlayable(BaseCard)
-+ String toString()
-+ int getNumber()
-}
-
-
-class Main {
-+ {static} void main(String[])
-}
-
-enum logic.game.CardColor {
-+  RED
-+  BLUE
-+  GREEN
-+  YELLOW
-+  NO_COLOR
-}
-
-abstract class logic.card.BaseEffectCard {
-- CardEffect effect
-+ <<Create>> BaseEffectCard()
-+ <<Create>> BaseEffectCard(CardColor)
-+ {abstract}void useEffect()
-+ void play()
-+ boolean isPlayable(BaseCard)
-+ CardEffect getEffect()
-}
-
-
-class logic.card.SkipCard {
-- CardEffect effect
-+ <<Create>> SkipCard(CardColor)
-+ String toString()
-+ void useEffect()
+class test.SkipCardTest {
+~ SkipCard c1
+~ NumberCard c2
+~ SkipCard c3
+~ SkipCard c4
+~ NumberCard c5
+~ ReverseCard c6
+~ void setup()
+~ void tearDown()
+~ void testConstructor()
+~ void testToString()
+~ void testisPlayable()
+~ void testEffect()
 }
 
 
 class application.GameLoop {
 - Deck deck
-- BaseCard topDiscard
 - Player[] players
+- BaseCard topDiscard
 - int currentPlayerIndex
 - {static} GameLoop gameInstance
 - int direction
 + <<Create>> GameLoop()
++ <<Create>> GameLoop(int)
++ {static} GameLoop getGameInstance(int)
 + void start()
 - void dealCards()
 - boolean isGameOver()
 + Player getNextPlayer()
 + {static} GameLoop getGameInstance()
++ {static} void clearInstance()
 + int getCurrentPlayerIndex()
 + void setCurrentPlayerIndex(int)
 + void setDirection(int)
 + int getDirection()
 + Deck getDeck()
 + Player[] getPlayers()
-}
-
-
-class logic.card.WildCardDrawFourCard {
-- CardEffect effect
-+ <<Create>> WildCardDrawFourCard()
-+ String toString()
-+ void useEffect()
-}
-
-
-class logic.card.ReverseCard {
-- CardEffect effect
-+ <<Create>> ReverseCard(CardColor)
-+ String toString()
-+ void useEffect()
++ void setTopCard(BaseCard)
++ BaseCard getTopCard()
 }
 
 
@@ -137,30 +178,46 @@ class logic.game.Deck {
 }
 
 
-class logic.card.DrawTwoCard {
-- CardEffect effect
-+ <<Create>> DrawTwoCard(CardColor)
+class logic.card.ReverseCard {
++ <<Create>> ReverseCard(CardColor)
++ void useEffect()
+}
+
+class logic.card.NumberCard {
+- int number
++ <<Create>> NumberCard(CardColor,int)
++ void play()
++ boolean isPlayable(BaseCard)
 + String toString()
++ int getNumber()
+}
+
+
+class test.NumberCardTest {
+~ NumberCard c1
+~ NumberCard c2
+~ NumberCard c3
+~ NumberCard c4
+~ NumberCard c5
+~ void setup()
+~ void tearDown()
+~ void testConstructor()
+~ void testToString()
+~ void testisPlayable()
+}
+
+
+class logic.card.DrawTwoCard {
++ <<Create>> DrawTwoCard(CardColor)
 + void useEffect()
 }
 
 
-enum logic.game.CardEffect {
-+  SKIP
-+  REVERSE
-+  DRAW_TWO
-+  WILD
-+  WILD_DRAW_FOUR
-}
 
-
-
-logic.card.BaseWildCard <|-- logic.card.WildCard
-logic.card.BaseEffectCard <|-- logic.card.BaseWildCard
+logic.card.EffectCard <|-- logic.card.SkipCard
+logic.card.EffectCard <|-- logic.card.WildCardDrawFourCard
+logic.card.BaseCard <|-- logic.card.EffectCard
+logic.card.EffectCard <|-- logic.card.ReverseCard
 logic.card.BaseCard <|-- logic.card.NumberCard
-logic.card.BaseCard <|-- logic.card.BaseEffectCard
-logic.card.BaseEffectCard <|-- logic.card.SkipCard
-logic.card.BaseWildCard <|-- logic.card.WildCardDrawFourCard
-logic.card.BaseEffectCard <|-- logic.card.ReverseCard
-logic.card.BaseEffectCard <|-- logic.card.DrawTwoCard
+logic.card.EffectCard <|-- logic.card.DrawTwoCard
 @enduml

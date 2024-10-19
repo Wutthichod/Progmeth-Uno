@@ -58,14 +58,15 @@ public class GameIO {
         }
         while (true) {
             try {
-                int colorIndex = scanner.nextInt();
+                String input = scanner.nextLine();
+                int colorIndex = Integer.parseInt(input);
                 if(colorIndex <= colors.length && colorIndex > 0) {
                     System.out.println("========================================");
                     return colors[colorIndex - 1];
                 }
             } catch (Exception e) {
                 System.out.println("Invalid Input!!");
-                scanner.nextLine();
+                System.out.println(e);
             }
         }
 

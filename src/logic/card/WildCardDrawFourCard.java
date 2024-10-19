@@ -26,7 +26,7 @@ public class WildCardDrawFourCard extends EffectCard {
 
     @Override
     public void useEffect() {
-        this.setColor(getColor());
+        this.setColor(GameIO.chooseColor());
         Player nextPlayer = GameLoop.getGameInstance().getNextPlayer();
         Deck deck = GameLoop.getGameInstance().getDeck();
         for (int i = 0; i < 4; i++) {

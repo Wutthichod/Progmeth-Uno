@@ -6,11 +6,14 @@ import Enum.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
+import static Enum.CardColor.RED;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DrawFourCardTest {
+public class WildDrawFourCardTest {
     WildCardDrawFourCard c1;
     NumberCard c2;
     DrawTwoCard c3;
@@ -18,6 +21,8 @@ public class DrawFourCardTest {
     WildCardDrawFourCard c5;
     NumberCard c6;
     WildCardDrawFourCard c7;
+    private final InputStream systemIn = System.in;
+    private ByteArrayInputStream testIn;
 
     @BeforeEach
     void setup() {
@@ -54,7 +59,7 @@ public class DrawFourCardTest {
         assertTrue(c3.isPlayable(c1));
         assertTrue(c4.isPlayable(c1));
         assertTrue(c5.isPlayable(c1));
-        c1.setColor(CardColor.RED);
+        c1.setColor(RED);
         assertFalse(c1.isPlayable(c2));
         c1.setColor(CardColor.YELLOW);
         assertTrue(c1.isPlayable(c2));
@@ -62,10 +67,16 @@ public class DrawFourCardTest {
 
     @Test
     void testPerformEffect() {
+        String input = "1";
+        testIn = new ByteArrayInputStream(input.getBytes());
+        System.setIn(testIn);
+
         GameLoop object = GameLoop.getGameInstance(2);
         assertEquals(0,object.getNextPlayer().getHand().size());
         c1.useEffect();
         assertEquals(4, object.getNextPlayer().getHand().size());
+        assertEquals(RED, c1.getColor());
     }
+
 
 }

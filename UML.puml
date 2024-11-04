@@ -68,7 +68,6 @@ enum Enum.CardColor {
 
 class logic.card.WildCardDrawFourCard {
 + <<Create>> WildCardDrawFourCard()
-+ void play()
 + String toString()
 + void useEffect()
 }

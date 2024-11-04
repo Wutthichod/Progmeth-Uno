@@ -26,6 +26,18 @@ public class GameIO {
     public static void printCard(BaseCard card) {
         System.out.println("========================================");
         System.out.println("Played " + card);
+        if (card instanceof SkipCard) {
+            System.out.println("Next player is skipped..");
+        } else if (card instanceof ReverseCard) {
+            System.out.println("Direction is reversed..");
+        } else if (card instanceof DrawTwoCard) {
+            System.out.println("Next player draw two cards..");
+        }
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void printInvalidCardMessage() {
@@ -62,6 +74,7 @@ public class GameIO {
                 int colorIndex = Integer.parseInt(input);
                 if(colorIndex <= colors.length && colorIndex > 0) {
                     System.out.println("========================================");
+                    System.out.println("Color changed to " + colors[colorIndex - 1]);
                     return colors[colorIndex - 1];
                 }
             } catch (Exception e) {
@@ -69,7 +82,6 @@ public class GameIO {
                 System.out.println(e);
             }
         }
-
     }
 
 }

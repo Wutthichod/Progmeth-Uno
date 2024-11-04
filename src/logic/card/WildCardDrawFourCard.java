@@ -14,12 +14,6 @@ public class WildCardDrawFourCard extends EffectCard {
     }
 
     @Override
-    public void play() {
-        super.play();
-        System.out.println("Color Changed to " + this.getColor());
-    }
-
-    @Override
     public String toString() {
         return "WILD DRAW FOUR";
     }

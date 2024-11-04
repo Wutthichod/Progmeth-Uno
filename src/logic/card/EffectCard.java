@@ -22,11 +22,13 @@ public abstract class EffectCard extends BaseCard{
     }
 
     @Override
-    public boolean isPlayable(BaseCard currentCard) {
-        if (currentCard instanceof EffectCard) {
-            return this.getEffect() == ((EffectCard) currentCard).getEffect() || currentCard instanceof WildCardDrawFourCard;
+    public boolean isPlayable(BaseCard prevCard) {
+        if (this instanceof WildCardDrawFourCard) {
+            return true;
+        } else if (prevCard instanceof EffectCard) {
+            return this.getEffect() == ((EffectCard) prevCard).getEffect() || this.getColor() == prevCard.getColor();
         }
-        return this.getColor() == currentCard.getColor();
+        return this.getColor() == prevCard.getColor();
     }
 
     @Override

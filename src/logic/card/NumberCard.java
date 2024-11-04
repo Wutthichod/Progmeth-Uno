@@ -17,11 +17,11 @@ public class NumberCard extends BaseCard {
     }
 
     @Override
-    public boolean isPlayable(BaseCard currentCard) {
-        if (currentCard instanceof NumberCard) {
-            return this.getNumber() == ((NumberCard) currentCard).getNumber() || this.getColor() == currentCard.getColor();
+    public boolean isPlayable(BaseCard prevCard) {
+        if (prevCard instanceof NumberCard) {
+            return this.getNumber() == ((NumberCard) prevCard).getNumber() || this.getColor() == prevCard.getColor();
         }
-        return this.getColor() == currentCard.getColor() || currentCard instanceof WildCardDrawFourCard;
+        return this.getColor() == prevCard.getColor();
     }
 
     @Override

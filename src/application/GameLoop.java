@@ -71,7 +71,7 @@ public class GameLoop {
                     int actionNumber = scanner.nextInt();
                     if (actionNumber > 0) {
                         BaseCard cardToPlay = currentPlayer.getHand().get(actionNumber - 1);
-                        if (topDiscard.isPlayable(cardToPlay)) {
+                        if (cardToPlay.isPlayable(topDiscard)) {
                             currentPlayer.playCard(cardToPlay);
                             topDiscard = cardToPlay;
                             break;

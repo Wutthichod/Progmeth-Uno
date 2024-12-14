@@ -1,5 +1,3 @@
-package test;
-
 import Enum.*;
 import application.GameLoop;
 import logic.card.*;
@@ -58,7 +56,7 @@ public class NumberCardTest {
     }
 
     @Test
-    void testisPlayable() {
+    void testIsPlayable() {
         assertTrue(c2.isPlayable(c1));// color
         assertTrue(c3.isPlayable(c1));// symbol
         assertTrue(c4.isPlayable(c1)); // both

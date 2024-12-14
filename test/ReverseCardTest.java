@@ -1,9 +1,8 @@
 package test;
 
-import logic.card.NumberCard;
-import logic.card.ReverseCard;
 import Enum.*;
 import application.*;
+import logic.card.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,7 +46,7 @@ public class ReverseCardTest {
     }
 
     @Test
-    void testisPlayable() {
+    void testIsPlayable() {
         assertTrue(c2.isPlayable(c1));
         assertTrue(c3.isPlayable(c1));
         assertTrue(c4.isPlayable(c1));
@@ -55,7 +54,7 @@ public class ReverseCardTest {
     }
 
     @Test
-    void testEffect() {
+    void testUseEffect() {
         GameLoop object = GameLoop.getGameInstance(1);
         c1.useEffect();
         assertEquals(-1, object.getDirection());

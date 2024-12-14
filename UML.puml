@@ -1,105 +1,13 @@
 @startuml
-class test.DrawTwoCardTest {
-~ DrawTwoCard c1
-~ NumberCard c2
-~ DrawTwoCard c3
-~ DrawTwoCard c4
-~ NumberCard c5
-~ void setup()
-~ void tearDown()
-~ void testConstructor()
-~ void testToString()
-~ void testisPlayable()
-~ void testPerformEffect()
-}
-
-
-class logic.card.SkipCard {
-+ <<Create>> SkipCard(CardColor)
-+ void useEffect()
-}
-
-class application.GameIO {
-- {static} Scanner scanner
-- {static} CardColor[] colors
-+ {static} void printHand(Player)
-+ {static} void printCard(BaseCard)
-+ {static} void printInvalidCardMessage()
-+ {static} void printTurnStartInfo(Player,BaseCard)
-+ {static} void printDrawResult(Player,BaseCard)
-+ {static} void printTopCard(BaseCard)
-+ {static} CardColor chooseColor()
-}
-
-
-class logic.game.Player {
-- String name
-- List<BaseCard> hand
-+ <<Create>> Player(String)
-+ void drawCard(BaseCard)
-+ void playCard(BaseCard)
-+ String getName()
-+ List<BaseCard> getHand()
-}
-
-
-class test.ReverseCardTest {
-~ ReverseCard c1
-~ NumberCard c2
-~ ReverseCard c3
-~ ReverseCard c4
-~ NumberCard c5
-~ void setup()
-~ void tearDown()
-~ void testConstructor()
-~ void testToString()
-~ void testisPlayable()
-~ void testEffect()
-}
-
-
-enum Enum.CardColor {
-+  RED
-+  BLUE
-+  GREEN
-+  YELLOW
-+  NO_COLOR
-}
-
 class logic.card.WildCardDrawFourCard {
 + <<Create>> WildCardDrawFourCard()
 + String toString()
 + void useEffect()
 }
 
-class test.WildDrawFourCardTest {
-~ WildCardDrawFourCard c1
-~ NumberCard c2
-~ DrawTwoCard c3
-~ WildCardDrawFourCard c4
-~ WildCardDrawFourCard c5
-~ NumberCard c6
-~ WildCardDrawFourCard c7
-- InputStream systemIn
-- ByteArrayInputStream testIn
-~ void setup()
-~ void tearDown()
-~ void testConstructor()
-~ void testToString()
-~ void testisPlayable()
-~ void testPerformEffect()
-}
-
-
-enum Enum.CardEffect {
-+  SKIP
-+  REVERSE
-+  DRAW_TWO
-+  WILD_DRAW_FOUR
-}
-
-class Main {
-+ {static} void main(String[])
+class logic.card.SkipCard {
++ <<Create>> SkipCard(CardColor)
++ void useEffect()
 }
 
 abstract class logic.card.EffectCard {
@@ -124,59 +32,6 @@ abstract class logic.card.BaseCard {
 }
 
 
-class test.SkipCardTest {
-~ SkipCard c1
-~ NumberCard c2
-~ SkipCard c3
-~ SkipCard c4
-~ NumberCard c5
-~ ReverseCard c6
-~ void setup()
-~ void tearDown()
-~ void testConstructor()
-~ void testToString()
-~ void testisPlayable()
-~ void testEffect()
-}
-
-
-class application.GameLoop {
-- Deck deck
-- Player[] players
-- BaseCard topDiscard
-- int currentPlayerIndex
-- {static} GameLoop gameInstance
-- int direction
-+ <<Create>> GameLoop()
-+ <<Create>> GameLoop(int)
-+ {static} GameLoop getGameInstance(int)
-+ void start()
-- void dealCards()
-- boolean isGameOver()
-+ Player getNextPlayer()
-+ {static} GameLoop getGameInstance()
-+ {static} void clearInstance()
-+ int getCurrentPlayerIndex()
-+ void setCurrentPlayerIndex(int)
-+ void setDirection(int)
-+ int getDirection()
-+ Deck getDeck()
-+ Player[] getPlayers()
-+ void setTopCard(BaseCard)
-+ BaseCard getTopCard()
-}
-
-
-class logic.game.Deck {
-- ArrayList<BaseCard> cards
-+ <<Create>> Deck()
-- void initializeDeck()
-+ void shuffle()
-+ BaseCard drawCard()
-+ BaseCard drawFirstCard()
-}
-
-
 class logic.card.ReverseCard {
 + <<Create>> ReverseCard(CardColor)
 + void useEffect()
@@ -192,20 +47,6 @@ class logic.card.NumberCard {
 }
 
 
-class test.NumberCardTest {
-~ NumberCard c1
-~ NumberCard c2
-~ NumberCard c3
-~ NumberCard c4
-~ NumberCard c5
-~ void setup()
-~ void tearDown()
-~ void testConstructor()
-~ void testToString()
-~ void testisPlayable()
-}
-
-
 class logic.card.DrawTwoCard {
 + <<Create>> DrawTwoCard(CardColor)
 + void useEffect()
@@ -213,8 +54,8 @@ class logic.card.DrawTwoCard {
 
 
 
-logic.card.EffectCard <|-- logic.card.SkipCard
 logic.card.EffectCard <|-- logic.card.WildCardDrawFourCard
+logic.card.EffectCard <|-- logic.card.SkipCard
 logic.card.BaseCard <|-- logic.card.EffectCard
 logic.card.EffectCard <|-- logic.card.ReverseCard
 logic.card.BaseCard <|-- logic.card.NumberCard

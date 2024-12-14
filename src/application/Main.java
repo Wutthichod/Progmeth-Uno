@@ -1,3 +1,5 @@
+package application;
+
 import application.GameLoop;
 
 public class Main {

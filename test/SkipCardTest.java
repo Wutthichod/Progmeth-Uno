@@ -1,16 +1,11 @@
-package test;
-
-import application.GameLoop;
-import logic.card.NumberCard;
-import logic.card.ReverseCard;
-import logic.card.SkipCard;
+import application.*;
+import logic.card.*;
 import Enum.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SkipCardTest {
     SkipCard c1;
@@ -52,7 +47,7 @@ public class SkipCardTest {
     }
 
     @Test
-    void testisPlayable() {
+    void testIsPlayable() {
         assertTrue(c2.isPlayable(c1));
         assertTrue(c3.isPlayable(c1));
         assertTrue(c4.isPlayable(c1));
@@ -60,7 +55,7 @@ public class SkipCardTest {
     }
 
     @Test
-    void testEffect() {
+    void testUseEffect() {
         GameLoop object = GameLoop.getGameInstance(3);
         c1.useEffect();
         assertEquals(1, object.getCurrentPlayerIndex());

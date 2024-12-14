@@ -1,5 +1,3 @@
-package test;
-
 import application.GameLoop;
 import logic.card.*;
 import Enum.*;
@@ -51,14 +49,14 @@ public class DrawTwoCardTest {
     }
 
     @Test
-    void testisPlayable() {
+    void testIsPlayable() {
         assertTrue(c2.isPlayable(c1));
         assertTrue(c3.isPlayable(c1));
         assertTrue(c4.isPlayable(c1));
         assertFalse(c5.isPlayable(c1));
     }
     @Test
-    void testPerformEffect() {
+    void testUseEffect() {
         GameLoop object = GameLoop.getGameInstance(2);
         assertEquals(0,object.getNextPlayer().getHand().size());
         c1.useEffect();

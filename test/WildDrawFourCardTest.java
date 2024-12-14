@@ -1,6 +1,4 @@
-package test;
-
-import application.GameLoop;
+import application.*;
 import logic.card.*;
 import Enum.*;
 import org.junit.jupiter.api.AfterEach;
@@ -54,19 +52,19 @@ public class WildDrawFourCardTest {
     }
 
     @Test
-    void testisPlayable() {
-        assertTrue(c2.isPlayable(c1));
-        assertTrue(c3.isPlayable(c1));
-        assertTrue(c4.isPlayable(c1));
-        assertTrue(c5.isPlayable(c1));
-        c1.setColor(RED);
-        assertFalse(c1.isPlayable(c2));
-        c1.setColor(CardColor.YELLOW);
+    void testIsPlayable() {
         assertTrue(c1.isPlayable(c2));
+        assertTrue(c1.isPlayable(c3));
+        assertTrue(c1.isPlayable(c4));
+        assertTrue(c1.isPlayable(c5));
+        c1.setColor(RED);
+        assertFalse(c2.isPlayable(c1));
+        c1.setColor(CardColor.YELLOW);
+        assertTrue(c2.isPlayable(c1));
     }
 
     @Test
-    void testPerformEffect() {
+    void testUseEffect() {
         String input = "1";
         testIn = new ByteArrayInputStream(input.getBytes());
         System.setIn(testIn);
@@ -77,6 +75,4 @@ public class WildDrawFourCardTest {
         assertEquals(4, object.getNextPlayer().getHand().size());
         assertEquals(RED, c1.getColor());
     }
-
-
 }
